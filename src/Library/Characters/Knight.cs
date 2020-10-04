@@ -1,61 +1,56 @@
 namespace RoleplayGame
 {
-    public class Knight
+public class Knight : Character
     {
         private int health = 100;
-
-        public Knight(string name)
+        public Knight(string name)    
+                :base(name)
         {
-            this.Name = name;
         }
 
-        public string Name { get; set; }
-
+        private string name;
         public Sword Sword { get; set; }
 
         public Shield Shield { get; set; }
 
         public Armor Armor { get; set; }
 
-        public int AttackValue
+        public override int AttackValue
         {
             get
             {
-                return Sword.AttackValue;
+                if (Sword != null)
+                {
+                    return Sword.AttackValue;
+                }
+                else 
+                {
+                    return 0;
+                }
             }
         }
 
-        public int DefenseValue
+        public override int DefenseValue
         {
             get
             {
-                return Armor.DefenseValue + Shield.DefenseValue;
+                if (Shield == null & Armor != null)
+                {
+                    return Armor.DefenseValue;
+                }
+                if (Armor == null & Shield != null)
+                {
+                    return Shield.DefenseValue;
+                }
+                if (Armor != null & Shield != null)
+                {
+                    return Shield.DefenseValue + Armor.DefenseValue;;
+                }
+                else
+                {
+                    return 0;
+                }
             }
-        }
-
-        public int Health
-        {
-            get
-            {
-                return this.health;
-            }
-            private set
-            {
-                this.health = value < 0 ? 0 : value;
-            }
-        }
-
-        public void ReceiveAttack(int power)
-        {
-            if (this.DefenseValue < power)
-            {
-                this.Health -= power - this.DefenseValue;
-            }
-        }
-
-        public void Cure()
-        {
-            this.Health = 100;
         }
     }
 }
