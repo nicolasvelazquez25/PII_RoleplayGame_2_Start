@@ -2,6 +2,12 @@ namespace RoleplayGame
 {
     public abstract class Character
     {
+        /*
+        Creamos la clase abstracta Character, de la que heredaran todos los personajes del código variables como la vida, que es igual a 100, el nombre que
+        se ingresa mediante el constructor, los getter y setter de la vida y el getter del nombre, de igual manera, se hereda el método para recibir un ataque 
+        y curarse a su vida inicial. Finalmente existen dos metodos llamadas AttackValue y DefenseValue que dependerá de los items de los 
+        personajes en sí. 
+        */
         private int health = 100;
 
         public Character(string name)

@@ -2,6 +2,12 @@ namespace RoleplayGame
 {
     public class Wizard : Character
     {
+        /*
+        Esta clase hereda de la clase padre Character (buscar su comentario para ver lo heredado), lo que incluye los métodos
+         AttackValue y DefenseValue, en el primero se utiliza  el ataque del Spellbook y la Staff, en caso de que el personaje posea alguna,
+         al igual que en el caso de DefenseValue se usa la defensa de los mismos.(En ambos casos se suman los ataques y 
+         defensas)
+        */
         private int health = 100;
         public Wizard(string name)    
                 :base(name)

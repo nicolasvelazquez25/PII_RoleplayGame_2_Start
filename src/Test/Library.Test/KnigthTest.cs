@@ -3,21 +3,24 @@ using RoleplayGame;
 using Test.Library;
 namespace Test.Library
 {
-    public class ArcherTest
+    public class KnightTest
     {
-        private Archer dummy;
-        private Bow bow;
-        private Helmet helmet;
+        private Knight dummy;
+        private Sword sword;
+        private Shield shield;
+        private Armor armor;
 
         [SetUp]
         public void SetUp()
         {
-            bow = new Bow();
-            helmet = new Helmet();
+            sword = new Sword();
+            shield = new Shield();
+            armor = new Armor();
             
-            dummy = new Archer("Dummy");
-            dummy.Bow = bow;
-            dummy.Helmet = helmet;
+            dummy = new Knight("Dummy");
+            dummy.Sword = sword;
+            dummy.Shield = shield;
+            dummy.Armor = armor;
         }
 
         [Test]
@@ -36,19 +39,19 @@ namespace Test.Library
             int dummy1InitialHealth = this.dummy.Health;
             int damage = 50;
             dummy.ReceiveAttack(damage);
-            Assert.AreEqual(dummy1InitialHealth - (damage - this.helmet.DefenseValue), dummy.Health);
+            Assert.AreEqual(dummy1InitialHealth - (damage - (this.shield.DefenseValue + this.armor.DefenseValue)), dummy.Health);
         }
 
         [Test]
         public void CorrectTotalDamage()
         {
-            Assert.AreEqual(dummy.AttackValue, bow.AttackValue);
+            Assert.AreEqual(dummy.AttackValue, sword.AttackValue);
         }
 
         [Test]
         public void CorrectTotalArmor()
         {
-            Assert.AreEqual(dummy.DefenseValue, helmet.DefenseValue);
+            Assert.AreEqual(dummy.DefenseValue, (shield.DefenseValue + armor.DefenseValue));
         }
     }
 }
